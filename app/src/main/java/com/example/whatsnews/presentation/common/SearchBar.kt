@@ -31,7 +31,6 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.whatsnews.ui.theme.WhatsNewsTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
     modifier: Modifier=Modifier,
@@ -115,15 +114,5 @@ fun Modifier.searchBarBoarder():Modifier=composed {
     }
     else {
         this
-    }
-}
-@Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun SearchBarPreview() {
-    WhatsNewsTheme {
-        SearchBar(text = "", onValueChange = {}, readOnly = false) {
-
-        }
     }
 }

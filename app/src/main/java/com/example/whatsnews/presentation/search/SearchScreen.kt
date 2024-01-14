@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.whatsnews.domain.model.Article
 import com.example.whatsnews.navigation.Route
 import com.example.whatsnews.presentation.common.ArticlesList
 import com.example.whatsnews.presentation.common.SearchBar
@@ -18,7 +19,7 @@ import com.example.whatsnews.presentation.common.SearchBar
 fun SearchScreen(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigate:(String)->Unit
+    navigateToDetails:(Article)->Unit
 ){
     Column(
         modifier = Modifier
@@ -35,9 +36,10 @@ fun SearchScreen(
         Spacer(modifier = Modifier.height(24.dp))
         state.articles?.let {
             val articles = it.collectAsLazyPagingItems()
-            ArticlesList(articles = articles, onClick = {
-                navigate(Route.DetailsScreen.route)
-            })
+            ArticlesList(
+                articles = articles,
+                onClick = { navigateToDetails(it) }
+            )
         }
             
 

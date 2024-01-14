@@ -56,12 +56,12 @@ fun ArticleCard(
         Column (
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
-                .padding(horizontal = 4.dp)
+                .padding(horizontal = 2.dp)
                 .height(96.dp)
         )  {
             Text(
                 text = article.title,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyMedium.copy(),
                 color = colorResource(id = R.color.black),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
@@ -72,12 +72,12 @@ fun ArticleCard(
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                     color = Color(0xFF4E4B66),
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(4.dp))
                 Icon(painter = painterResource(id = R.drawable.baseline_access_time_24), contentDescription = "time icon",
                     modifier=Modifier.size(12.dp),
                     tint = Color(0xFF4E4B66)
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(2.dp))
                 Text(
                     text = article.publishedAt,
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
@@ -85,26 +85,6 @@ fun ArticleCard(
                 )
             }
 
-        }
-    }
-}
-@Preview (showBackground = true)
-@Preview (showBackground = true, uiMode =  UI_MODE_NIGHT_YES)
-@Composable
-fun ArticleCardPreView(){
-    WhatsNewsTheme{
-        ArticleCard(article = Article(
-            author = "",
-            content = "",
-            description = "",
-            publishedAt = "2 hours",
-            source = Source(id="", name = "BBC"),
-            title = "The Resistance in Gaza Has Bombed a Mercava",
-            url = "",
-            urlToImage = ""
-
-        ) ) {
-            
         }
     }
 }

@@ -12,7 +12,29 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.example.whatsnews.domain.model.Article
+@Composable
+fun ArticlesList(
+    modifier: Modifier = Modifier,
+    articles: List<Article>,
+    onClick:(Article)->Unit
+){
 
+
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+            contentPadding = PaddingValues(8.dp),
+            modifier = modifier
+                .fillMaxSize()
+        ){
+            items(count=articles.size){
+               val article = articles[it]
+                    ArticleCard(article = article) {
+                        onClick(article)
+                    }
+
+            }
+        }
+}
 @Composable
 fun ArticlesList(
     modifier: Modifier = Modifier,
@@ -24,7 +46,7 @@ fun ArticlesList(
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(24.dp),
             contentPadding = PaddingValues(8.dp),
-            modifier = Modifier
+            modifier = modifier
             .fillMaxSize()
             ){
             items(count=articles.itemCount){

@@ -4,7 +4,7 @@ plugins {
     id ("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id ("kotlin-parcelize")
-
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -55,6 +55,7 @@ android {
 }
 
 dependencies {
+
     //splash
     implementation("androidx.core:core-splashscreen:1.0.1")
     //Hilt
@@ -74,6 +75,12 @@ dependencies {
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    //room
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")

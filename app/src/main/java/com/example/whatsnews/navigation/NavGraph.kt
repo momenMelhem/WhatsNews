@@ -6,11 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.whatsnews.presentation.home.HomeScreen
-import com.example.whatsnews.presentation.home.HomeViewModel
-import com.example.whatsnews.presentation.search.SearchScreen
-import com.example.whatsnews.presentation.search.SearchViewModel
+import com.example.whatsnews.presentation.bookmark.BookmarkViewModel
+import com.example.whatsnews.presentation.bookmark.BookmarkScreen
+import com.example.whatsnews.presentation.news_navigator.NewsNavigator
 
 @Composable
 fun NavGraph(
@@ -19,8 +17,7 @@ fun NavGraph(
 ){
     NavHost(navController,startDestination){
         composable(Route.HomeScreen.route){
-            val viewModel : SearchViewModel = hiltViewModel()
-            SearchScreen(state = viewModel.state.value, event = viewModel::onEvent, navigate = {})
+            NewsNavigator()
         }
     }
 }

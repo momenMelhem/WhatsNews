@@ -18,4 +18,5 @@ interface NewsApi {
         @Query ("sources") sources : String,
         @Query ("apiKey") apiKey:String = API_KEY
     ):NewsResponse
+
 }

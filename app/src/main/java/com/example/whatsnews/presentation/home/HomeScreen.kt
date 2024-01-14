@@ -30,7 +30,11 @@ import com.example.whatsnews.presentation.common.SearchBar
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(articles:LazyPagingItems<Article>,navigate:(String)->Unit){
+fun HomeScreen(
+    articles:LazyPagingItems<Article>,
+    navigateToSearch:()->Unit,
+    navigateToDetails:(Article)->Unit
+) {
     val titles by remember {
         derivedStateOf {
             if(articles.itemCount>10){
@@ -46,7 +50,6 @@ fun HomeScreen(articles:LazyPagingItems<Article>,navigate:(String)->Unit){
     Column (
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 24.dp)
             .statusBarsPadding()
     ) {
             Image(
@@ -57,16 +60,16 @@ fun HomeScreen(articles:LazyPagingItems<Article>,navigate:(String)->Unit){
                 painter = painterResource(id = R.drawable.whats_news),
                 contentDescription = null,
                 )
-        Spacer(modifier = Modifier.height(24.dp))
-        
+        Spacer(modifier = Modifier.height(16.dp))
+
         SearchBar(
             modifier = Modifier
-                .padding(24.dp),
+                .padding(top=4.dp,end=4.dp, start = 4.dp),
             text = "",
             readOnly = true,
             onValueChange = {},
             onClick = {
-                      navigate(Route.SearchScreen.route)
+             navigateToSearch()
             },
             onSearch = {}
         )
@@ -83,9 +86,9 @@ fun HomeScreen(articles:LazyPagingItems<Article>,navigate:(String)->Unit){
         )
         Spacer(modifier = Modifier.height(24.dp))
         ArticlesList(
-            modifier = Modifier.padding(horizontal = 24.dp),
+
             articles = articles,
-            onClick = { navigate(Route.DetailsScreen.route) }
+            onClick = { navigateToDetails(it) }
         )
 
     }
